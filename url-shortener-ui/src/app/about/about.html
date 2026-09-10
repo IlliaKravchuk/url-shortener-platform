@@ -1,0 +1,31 @@
+<div class="about-container">
+  <div class="card">
+    <h2>Про алгоритм скорочення посилань</h2>
+
+    <div *ngIf="successMessage" class="alert alert-success">
+      {{ successMessage }}
+    </div>
+    <div *ngIf="isAdminUser; else viewMode">
+      <div class="form-group">
+        <label>Редагувати опис (Режим адміністратора):</label>
+        <textarea
+          [(ngModel)]="aboutText"
+          class="form-control"
+          rows="6"
+          placeholder="Введіть опис алгоритму...">
+        </textarea>
+      </div>
+      <button class="btn btn-primary" (click)="saveChanges()">Зберегти зміни</button>
+    </div>
+
+    <ng-template #viewMode>
+      <div class="content-view">
+        <p>{{ aboutText }}</p>
+      </div>
+    </ng-template>
+
+    <div class="actions">
+      <a routerLink="/" class="btn btn-secondary">Повернутися на головну</a>
+    </div>
+  </div>
+</div>

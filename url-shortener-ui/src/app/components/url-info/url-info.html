@@ -1,0 +1,52 @@
+<div class="url-info-container" *ngIf="urlData; else errorTpl">
+  <div class="card">
+    <h2>Деталі скороченого посилання</h2>
+
+    <div class="info-row">
+      <span class="label">ID запису:</span>
+      <span class="value">{{ urlData.id }}</span>
+    </div>
+
+    <div class="info-row">
+      <span class="label">Оригінальний URL:</span>
+      <span class="value">
+        <a [href]="urlData.originalUrl" target="_blank">{{ urlData.originalUrl }}</a>
+      </span>
+    </div>
+
+    <div class="info-row">
+      <span class="label">Короткий код:</span>
+      <span class="value"><code>{{ urlData.shortCode }}</code></span>
+    </div>
+
+    <div class="info-row">
+      <span class="label">Дата створення:</span>
+      <span class="value">{{ urlData.createdAt | date:'medium' }}</span>
+    </div>
+
+    <div class="info-row">
+      <span class="label">Кількість кліків:</span>
+      <span class="value">
+        <span class="badge-clicks">{{ urlData.clickCount }}</span>
+      </span>
+    </div>
+
+    <div class="info-row">
+      <span class="label">Створив (Автор):</span>
+      <span class="value">{{ urlData.createdBy }}</span>
+    </div>
+
+    <div class="back-btn-container">
+      <button class="btn btn-secondary" (click)="goBack()">Назад до списку</button>
+    </div>
+  </div>
+</div>
+
+<ng-template #errorTpl>
+  <div class="url-info-container">
+    <div class="card text-center">
+      <p class="text-danger">{{ errorMessage || 'Завантаження...' }}</p>
+      <button class="btn btn-primary mt-3" (click)="goBack()">На головну</button>
+    </div>
+  </div>
+</ng-template>
